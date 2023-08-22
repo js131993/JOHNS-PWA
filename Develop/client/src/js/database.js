@@ -28,6 +28,7 @@ export const putDb = async (content) => {
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
   const db = await openDB("jate", 1);
+  // access the jate object store and get all records
   const record = await db.get("jate", 1);
   return record ? record.content : null;
 };
