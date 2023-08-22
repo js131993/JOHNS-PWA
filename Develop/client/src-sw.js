@@ -27,4 +27,24 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
+const assetCache = new CacheFirst({
+  cacheName: "asset-cache",
+  plugins: [
+    new CacheableResponsePlugin({
+      statuses: [0, 200],
+    }),
+    new ExpirationPlugin({
+      // Cache for a month.
+      maxAgeSeconds: 30 * 24 * 60 * 60,
+      // Only keep the 60 most recent entries.
+      maxEntries: 60,
+      // Automatically cleanup if quota is exceeded.
+      purgeOnQuotaError: true,
+    }),
+  ],
+});
+
+
+
+
 registerRoute();
