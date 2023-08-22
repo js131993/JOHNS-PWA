@@ -45,6 +45,17 @@ const assetCache = new CacheFirst({
 });
 
 
+// Cache CSS and JavaScript assets.
+registerRoute(
+  // Cache CSS and JS files
+  ({ request }) =>
+    request.destination === "style" || request.destination === "script",
+  assetCache
+);
 
-
-registerRoute();
+// Cache image files.
+registerRoute(
+  // Cache image files
+  ({ request }) => request.destination === "image",
+  assetCache
+);
