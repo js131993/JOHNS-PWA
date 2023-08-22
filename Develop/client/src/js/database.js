@@ -32,5 +32,4 @@ export const getDb = async () => {
   const record = await db.get("jate", 1);
   return record ? record.content : null;
 };
-
 initdb();
